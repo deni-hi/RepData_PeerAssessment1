@@ -33,8 +33,7 @@ head(activity)
 steps_per_day<-aggregate(x=activity$steps, by=activity["date"], FUN=sum)
 mean_steps_per_day<-mean(steps_per_day$x, na.rm=T)
 median_steps_per_day<-median(steps_per_day$x, na.rm = TRUE)
-barplot(steps_per_day$x, names.arg=steps_per_day$date,xlab="day", 
-        cex.names=".7", main="steps per day")
+hist(steps_per_day$x, breaks=30, main="Histogram of steps per day")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
@@ -79,8 +78,7 @@ activity_complete<-mutate(grouped_by_interval,
 steps_per_day2<-aggregate(x=activity_complete$completeSteps, 
                          by=activity_complete["date"], FUN=sum)
 
-barplot(steps_per_day2$x, names.arg=steps_per_day$date,xlab="day", 
-        cex.names=".7", main="steps per day with imputed missing values")
+hist(steps_per_day2$x, breaks=30, main= "histogram of steps per day with imputed missing values")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->

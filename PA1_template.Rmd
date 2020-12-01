@@ -25,8 +25,7 @@ head(activity)
 steps_per_day<-aggregate(x=activity$steps, by=activity["date"], FUN=sum)
 mean_steps_per_day<-mean(steps_per_day$x, na.rm=T)
 median_steps_per_day<-median(steps_per_day$x, na.rm = TRUE)
-barplot(steps_per_day$x, names.arg=steps_per_day$date,xlab="day", 
-        cex.names=".7", main="steps per day")
+hist(steps_per_day$x, breaks=30, main="Histogram of steps per day")
 ```
 
 The mean total number of steps taken per day is `r mean_steps_per_day` and the median is `r median_steps_per_day`.
@@ -66,8 +65,8 @@ activity_complete<-mutate(grouped_by_interval,
 steps_per_day2<-aggregate(x=activity_complete$completeSteps, 
                          by=activity_complete["date"], FUN=sum)
 
-barplot(steps_per_day2$x, names.arg=steps_per_day$date,xlab="day", 
-        cex.names=".7", main="steps per day with imputed missing values")
+hist(steps_per_day2$x, breaks=30, main= "histogram of steps per day with imputed missing values")
+
 head(activity_complete)
 ```
 For each `steps` value that is NA, we replace it with the value from the mean for the corresponding interval. That is possible because we first group the data frame by interval, so that the mean considers the grouping. The column 'completeSteps' then contains no NA values, but we keep the previous 'steps' column for reference.
